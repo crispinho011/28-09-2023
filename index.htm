@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Estilos CSS aqui */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .screen {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+    <title>Stopots</title>
+</head>
+<body>
+    <div class="container">
+        <div class="screen" id="screen1">
+            <h1>Tela de Sorteio</h1>
+            <button id="sortearLetra">Sortear Letra</button>
+            <p id="letraSorteada"></p>
+            <button id="irParaTela2">Ir para Tela 2</button>
+        </div>
+        <div class="screen" id="screen2">
+            <h1>Regras do Jogo</h1>
+            <p>O nome é: <span id="nomeJogador"></span></p>
+            <ul>
+                <li>Nome</li>
+                <li>CEP</li>
+                <li>Minha sogra é</li>
+                <li>Fruta</li>
+                <li>Carro</li>
+                <!-- Adicione outras regras aqui -->
+            </ul>
+            <button id="voltarParaTela1">Voltar para Tela 1</button>
+        </div>
+    </div>
+    <script>
+        // JavaScript aqui
+        document.addEventListener("DOMContentLoaded", function () {
+            const screen1 = document.getElementById("screen1");
+            const screen2 = document.getElementById("screen2");
+            const sortearLetraButton = document.getElementById("sortearLetra");
+            const letraSorteada = document.getElementById("letraSorteada");
+            const irParaTela2Button = document.getElementById("irParaTela2");
+            const voltarParaTela1Button = document.getElementById("voltarParaTela1");
+            const nomeJogador = document.getElementById("nomeJogador");
+
+            // Função para sortear uma letra
+            function sortearLetra() {
+                const letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+                const letraSorteadaIndex = Math.floor(Math.random() * letras.length);
+                return letras[letraSorteadaIndex];
+            }
+
+            // Evento para sortear uma letra
+            sortearLetraButton.addEventListener("click", function () {
+                const letra = sortearLetra();
+                letraSorteada.textContent = `Letra Sorteada: ${letra}`;
+            });
+
+            // Evento para ir para a tela 2 e definir o nome do jogador
+            irParaTela2Button.addEventListener("click", function () {
+                const nome = prompt("Digite o nome do jogador:");
+                if (nome) { // Verifica se o nome não é vazio
+                    nomeJogador.textContent = nome;
+                    screen1.style.display = "none";
+                    screen2.style.display = "block";
+                } else {
+                    alert("Por favor, insira um nome válido.");
+                }
+            });
+
+            // Evento para voltar para a tela 1
+            voltarParaTela1Button.addEventListener("click", function () {
+                screen2.style.display = "none";
+                screen1.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>
